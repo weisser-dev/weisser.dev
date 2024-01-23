@@ -2,31 +2,36 @@ const fs = require('fs');
 const path = require('path');
 const config = require('./src/config/config.json');
 
-const profileDataPath = path.join(__dirname, 'src', 'data', 'profileData.json');
-const profileDataTemplatePath = path.join(__dirname, 'src', 'data', 'profileData.template.json');
-const encodedDataPath = path.join(__dirname, 'public', 'data', 'b64ProfileData.json');
-
-// Function to copy template to actual profile data
-function createProfileFromTemplate() {
-  const templateData = fs.readFileSync(profileDataTemplatePath, 'utf8');
-  fs.writeFileSync(profileDataPath, templateData);
-  console.log("profileData.json has been created from the template.");
-}
-
 if (config.encodeProfileData) {
-  // Check if profileData.json exists, if not create it from the template
-  if (!fs.existsSync(profileDataPath)) {
-    createProfileFromTemplate();
-  }
+  const profileDataPath = path.join(__dirname, 'src', 'data', 'profileData.json');
+  const profileTemplatePath = path.join(__dirname, 'src', 'data', 'profileData.template.json');
+  const encodedDataPath = path.join(__dirname, 'public', 'data', 'b64ProfileData.json');
 
-  const profileDataStat = fs.statSync(profileDataPath);
   let shouldEncode = true;
 
-  // Check if b64ProfileData.json exists
-  if (fs.existsSync(encodedDataPath)) {
+  // Check if profileData.json exists, if not create it from template
+  if (!fs.existsSync(profileDataPath)) {
+    if (fs.existsSync(profileTemplatePath)) {
+      fs.copyFileSync(profileTemplatePath, profileDataPath);
+      console.log("No profileData.json existing, generating a new one, please fill out your personal information here, or ignore this log, if your b64ProfileData.json is up to date.");
+      shouldEncode = false; // The newly created file will be identical to the template
+    } else {
+      console.log("profileData.template.json is missing, unable to create profileData.json.");
+      return;
+    }
+  } else if (fs.existsSync(encodedDataPath)) {
+    const profileDataStat = fs.statSync(profileDataPath);
     const encodedDataStat = fs.statSync(encodedDataPath);
+
     // Compare modification times
     shouldEncode = profileDataStat.mtime > encodedDataStat.mtime;
+
+    // Check if the content of profileData.json is identical to the template
+    const profileDataContent = fs.readFileSync(profileDataPath, 'utf8');
+    const templateContent = fs.readFileSync(profileTemplatePath, 'utf8');
+    if (profileDataContent === templateContent) {
+      shouldEncode = false;
+    }
   }
 
   if (shouldEncode) {
@@ -34,8 +39,6 @@ if (config.encodeProfileData) {
     const encodedData = Buffer.from(profileData).toString('base64');
     fs.writeFileSync(encodedDataPath, encodedData);
   } else {
-    console.log("You always have a newer b64 encoded profileData.json, to overwrite please update src/data/profileData.json or remove the generated public/data/b64ProfileData.json");
+    console.log("The profile data is up to date and does not need to be encoded.");
   }
-} else {
-  console.log("Encoding of profile data is not enabled in the configuration.");
 }
