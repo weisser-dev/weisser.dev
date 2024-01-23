@@ -23,6 +23,7 @@ yarn-error.log*
 
 # Application-specific files
 /src/data/profileData.json
+profileData.json
 
 # Windows-specific files and folders
 Thumbs.db

@@ -1,7 +1,7 @@
 {
-  "title": "My Digital Card",
-  "description": "Professional Digital Business Card",
-  "language": "en-US",
+  "title": "Erik Weisser - Digitale Visitenkarte",
+  "description": "Hohe Qualität und umfassende Expertise aus einer Hand! Bei Interesse an maßgeschneiderten Lösungen, freue ich mich auf ein unverbindliches Erstgespräch, um Ihr Anliegen individuell zu besprechen.",
+  "language": "de-DE",
   "ogImage": "/path/to/image.jpg",
   "additionalMetaTags": [
     {
@@ -10,7 +10,7 @@
     },
     {
       "property": "og:title",
-      "content": "My Digital Card"
+      "content": "Erik Weisser - Digitale Visitenkarte"
     }
   ]
 }

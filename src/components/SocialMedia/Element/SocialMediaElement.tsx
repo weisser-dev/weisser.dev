@@ -16,6 +16,8 @@ const SocialMediaElement: React.FC<SocialMediaElementProps> = ({href}) => {
       'youtube.com': {platform: 'YouTube', icon: 'fab fa-youtube'},
       'pinterest.com': {platform: 'Pinterest', icon: 'fab fa-pinterest'},
       'snapchat.com': {platform: 'SnapChat', icon: 'fab fa-snapchat'},
+      'github.com': {platform: 'GitHub', icon: 'fab fa-github'},
+      'wa.me': {platform: 'WhatsApp', icon: 'fab fa-whatsapp'},
     };
 
     for (const [platformURL, info] of Object.entries(platformMappings)) {
