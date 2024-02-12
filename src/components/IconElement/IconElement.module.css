@@ -1,0 +1,13 @@
+.iconImage {
+    /* Assuming your SVG is encoded and set as a background */
+    background-image: url('data:image/svg+xml;utf8,<svg...></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: block;
+    width: 36px; /* Adjust as needed */
+    height: 37px; /* Adjust as needed */
+}
+
+.iconImage:hover {
+    --text-color: var(--primary-color); /* Change the SVG fill color on hover */
+}
