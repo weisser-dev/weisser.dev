@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "https://weisser.dev/static/css/main.f2996e30.css",
-    "main.js": "https://weisser.dev/static/js/main.eb8992cb.js",
+    "main.js": "https://weisser.dev/static/js/main.c6ca00d2.js",
     "static/js/449.47f2efc7.chunk.js": "https://weisser.dev/static/js/449.47f2efc7.chunk.js",
     "static/css/628.672c354f.chunk.css": "https://weisser.dev/static/css/628.672c354f.chunk.css",
     "static/js/628.ef8e3c43.chunk.js": "https://weisser.dev/static/js/628.ef8e3c43.chunk.js",
@@ -19,7 +19,7 @@
     "static/media/fa-v4compatibility.woff2": "https://weisser.dev/static/media/fa-v4compatibility.b3049b13a93f07e026fc.woff2",
     "index.html": "https://weisser.dev/index.html",
     "main.f2996e30.css.map": "https://weisser.dev/static/css/main.f2996e30.css.map",
-    "main.eb8992cb.js.map": "https://weisser.dev/static/js/main.eb8992cb.js.map",
+    "main.c6ca00d2.js.map": "https://weisser.dev/static/js/main.c6ca00d2.js.map",
     "628.672c354f.chunk.css.map": "https://weisser.dev/static/css/628.672c354f.chunk.css.map",
     "628.ef8e3c43.chunk.js.map": "https://weisser.dev/static/js/628.ef8e3c43.chunk.js.map",
     "397.57b3426d.chunk.css.map": "https://weisser.dev/static/css/397.57b3426d.chunk.css.map",
@@ -29,6 +29,6 @@
   },
   "entrypoints": [
     "static/css/main.f2996e30.css",
-    "static/js/main.eb8992cb.js"
+    "static/js/main.c6ca00d2.js"
   ]
 }
