@@ -17,6 +17,8 @@ const SocialMediaElement: React.FC<SocialMediaElementProps> = ({href}) => {
       'pinterest.com': {platform: 'Pinterest', icon: 'fab fa-pinterest'},
       'snapchat.com': {platform: 'SnapChat', icon: 'fab fa-snapchat'},
       'github.com': {platform: 'GitHub', icon: 'fab fa-github'},
+      'blog.weisser.dev': {platform: 'Blog', icon: 'fas fa-newspaper'},
+      'openagentix.si': {platform: 'OpenAgentix', icon: ''},
       'wa.me': {platform: 'WhatsApp', icon: 'fab fa-whatsapp'},
     };
 
@@ -37,9 +39,12 @@ const SocialMediaElement: React.FC<SocialMediaElementProps> = ({href}) => {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={title}
+      title={title}
       className={`${styles.socialMediaLink} ${platform.toLowerCase()}`}
     >
-      <i className={`${styles.socialMediaIcon} ${platformIcon}`}></i>
+      {platform === 'OpenAgentix'
+        ? <img className={styles.socialMediaImage} src="assets/icons/openagentix.svg" alt="" />
+        : <i className={`${styles.socialMediaIcon} ${platformIcon}`} aria-hidden="true"></i>}
     </a>);
 };
 

@@ -48,7 +48,16 @@ const App = () => {
   }
 
   const {profile, footer} = profileData;
-  const socialMediaObjects = profileData.socialMediaElements.map(href => ({href}));
+  const socialMediaObjects: {href: string}[] = profileData.socialMediaElements.map(href => ({href}));
+  const githubIndex = socialMediaObjects.findIndex(({href}) => {
+    try { return new URL(href).hostname.toLowerCase() === 'github.com'; } catch { return false; }
+  });
+  socialMediaObjects.splice(githubIndex < 0 ? socialMediaObjects.length : githubIndex + 1, 0,
+    {href: 'https://blog.weisser.dev/'}, {href: 'https://openagentix.si/'});
+  const projectCard = <CardElement title="OpenAgentix" description="Private Open-Source-Projekte rund um KI und Agenten" href="https://openagentix.si/" icon="assets/icons/openagentix.svg" />;
+  const websiteIndex = profileData.cardElements.findIndex(element => {
+    try { return new URL(element.href).hostname.toLowerCase().replace(/^www\./, '') === 'weisser.dev'; } catch { return false; }
+  });
 
   return (<div className="App">
     {/* Content Section */}
@@ -63,11 +72,14 @@ const App = () => {
       {/* Social Media Section */}
       <SocialMediaSection socialMediaElements={socialMediaObjects}/>
 
-      {/* Independent open-source work */}
-      <CardElement title="OpenAgentix" description="Private Open-Source-Projekte rund um KI und Agenten" href="https://openagentix.si/" icon="assets/icons/link.svg" />
-
       {/* Card Elements Section */}
-      {profileData.cardElements.map((element, index) => (<CardElement key={index} {...element} />))}
+      {profileData.cardElements.map((element, index) => (
+        <React.Fragment key={index}>
+          <CardElement {...element} />
+          {index === websiteIndex && projectCard}
+        </React.Fragment>
+      ))}
+      {websiteIndex < 0 && projectCard}
     </div>
 
     {/* Footer Section */}

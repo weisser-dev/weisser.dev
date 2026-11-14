@@ -1,6 +1,7 @@
 .socialMediaSection {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     padding: 20px 0;
     margin-right: 10px;
 }
