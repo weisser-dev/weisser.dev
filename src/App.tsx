@@ -63,6 +63,9 @@ const App = () => {
       {/* Social Media Section */}
       <SocialMediaSection socialMediaElements={socialMediaObjects}/>
 
+      {/* Independent open-source work */}
+      <CardElement title="OpenAgentix" description="Private Open-Source-Projekte rund um KI und Agenten" href="https://openagentix.si/" icon="assets/icons/link.svg" />
+
       {/* Card Elements Section */}
       {profileData.cardElements.map((element, index) => (<CardElement key={index} {...element} />))}
     </div>
